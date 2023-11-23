@@ -534,6 +534,7 @@ static int swr_dmic_probe(struct swr_device *pdev)
 	const char *swr_dmic_codec_name_of = NULL;
 	struct snd_soc_component *component = NULL;
 	int num_retry = NUM_ATTEMPTS;
+	size_t swr_dmic_name_prefix_of_len = 0;
 
 	swr_dmic = devm_kzalloc(&pdev->dev, sizeof(struct swr_dmic_priv),
 			    GFP_KERNEL);
@@ -580,6 +581,12 @@ static int swr_dmic_probe(struct swr_device *pdev)
 		dev_dbg(&pdev->dev, "%s: Looking up %s property in node %s failed\n",
 		__func__, "qcom,swr-dmic-prefix",
 		pdev->dev.of_node->full_name);
+		goto dev_err;
+	}
+
+	swr_dmic_name_prefix_of_len = strlen(swr_dmic_name_prefix_of);
+	if (!swr_dmic_name_prefix_of_len) {
+		dev_dbg(&pdev->dev, "swr_dmic_name_prefix_of is empty.");
 		goto dev_err;
 	}
 
@@ -673,16 +680,19 @@ static int swr_dmic_probe(struct swr_device *pdev)
 			__func__);
 		goto dev_err;
 	}
+
+	swr_dmic_name_prefix_of_len += 1;
+
 	swr_dmic->component = component;
 	prefix_name = devm_kzalloc(&pdev->dev,
-					strlen(swr_dmic_name_prefix_of) + 1,
+					swr_dmic_name_prefix_of_len,
 					GFP_KERNEL);
 	if (!prefix_name) {
 		ret = -ENOMEM;
 		goto dev_err;
 	}
 	strlcpy(prefix_name, swr_dmic_name_prefix_of,
-			strlen(swr_dmic_name_prefix_of) + 1);
+			swr_dmic_name_prefix_of_len);
 	component->name_prefix = prefix_name;
 
 	return 0;
