@@ -24,7 +24,7 @@ static unsigned int default_target_loads[] = {DEFAULT_TARGET_LOAD};
 #endif
 
 #ifdef CONFIG_OPLUS_FEATURE_SUGOV_POWER_EFFIENCY
-#include <linux/cpufreq_effiency.h>
+#include <soc/oplus/cpufreq_effiency.h>
 #endif
 
 struct sugov_tunables {
