@@ -41,3 +41,8 @@ obj-$(CONFIG_OPLUS_DEVICE_IFNO)  +=  oplus/device_info/
 #ifdef OPLUS_FEATURE_ESIM
 obj-y += oplus/misc/
 #endif /* OPLUS_FEATURE_ESIM */
+
+#ifdef OPLUS_FEATURE_SUGOV_POWER_EFFIENCY
+# Add for cpu effiency optimize by chengzhangtao on 2021/10/08
+obj-$(CONFIG_OPLUS_FEATURE_SUGOV_POWER_EFFIENCY) += oplus/cpufreq_effiency/
+#endif /* OPLUS_FEATURE_SUGOV_POWER_EFFIENCY */
