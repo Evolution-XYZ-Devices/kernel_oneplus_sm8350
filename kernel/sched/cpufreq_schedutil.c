@@ -17,6 +17,16 @@
 
 #define IOWAIT_BOOST_MIN	(SCHED_CAPACITY_SCALE / 8)
 
+#ifdef CONFIG_OPLUS_FEATURE_SUGOV_TL
+/* Target load. Lower values result in higher CPU speeds. */
+#define DEFAULT_TARGET_LOAD 80
+static unsigned int default_target_loads[] = {DEFAULT_TARGET_LOAD};
+#endif
+
+#ifdef CONFIG_OPLUS_FEATURE_SUGOV_POWER_EFFIENCY
+#include <soc/oplus/cpufreq_effiency.h>
+#endif
+
 struct sugov_tunables {
 	struct gov_attr_set	attr_set;
 	unsigned int		up_rate_limit_us;
