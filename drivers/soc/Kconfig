@@ -37,4 +37,8 @@ source "drivers/soc/oplus/sensor/Kconfig"
 source "drivers/soc/oplus/misc/Kconfig"
 #endif /* OPLUS_FEATURE_ESIM */
 
+#ifdef OPLUS_FEATURE_SUGOV_POWER_EFFIENCY
+source "drivers/soc/oplus/cpufreq_effiency/Kconfig"
+#endif /* OPLUS_FEATURE_SUGOV_POWER_EFFIENCY */
+
 endmenu
