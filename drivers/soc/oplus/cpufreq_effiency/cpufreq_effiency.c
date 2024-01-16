@@ -1,4 +1,4 @@
-#include <linux/cpufreq_effiency.h>
+#include <soc/oplus/cpufreq_effiency.h>
 
 // affect_mode, @1: enable cpufreq effiency, @0: disable cprfreq effiency.
 static int affect_mode = 0;
